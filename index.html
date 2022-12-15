@@ -1,0 +1,283 @@
+<?php 
+    if (!empty($_COOKIE['sid'])) {session_id($_COOKIE['sid']);}
+    session_start();
+    require_once 'classes/Auth.class.php';
+    require_once 'stayt.php';
+?>
+<!DOCTYPE html>
+<!--[if lte IE 9]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Tirotex - интернет магазин текстиля</title>
+<!--=================================
+Meta tags
+=================================-->
+<meta name="description" content="">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" />
+<!--=================================
+Style Sheets
+=================================-->
+<link href='http://fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Dancing+Script:400,700' rel='stylesheet' type='text/css'>
+
+    
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="css/animations.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.flickr.css">
+<link rel="stylesheet" type="text/css" href="css/prettyPhoto.css">
+<link rel="stylesheet" href="css/main.css">
+
+
+<script async src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+</head>
+<body class="eschool" data-spy="scroll" data-target="#navbar" data-offset="70">
+
+<!--====================================
+Body Content
+=======================================-->
+<div class="navbar-custom">
+    <div class="container">
+        <a href="index.html" class="logo"><img width="190" height="270" src="img/logo.png" alt=""></a>
+        <nav id="navbar">
+            <a href="#" class="nav-triger"><span class="fa fa-navicon"></span></a>
+            <ul class="main-menu nav">
+                <li><a href="#section0">О НАС</a></li>
+                <li><a href="#section2">Преимущества</a></li>
+                <li><a href="#section3">Товары</a></li>
+                <li><a href="#section4">Отзывы</a></li>
+                <li><a href="#section5">Контакты</a></li>
+                <li><a href="auth.html">Авторизация</a></li>
+            </ul>
+        </nav>
+        
+    </div>
+</div>
+    
+<section id="section0" class="header">
+    <div class="container">
+        <div class="headerInner">
+            <h2> <b class="redd">Текстиль <span style="color:#ffc000">для дома</span></b></h2>
+            <p class="redd">Наша компания производит и продает широкий ассортимент<br> натуральных высококачественных хлопчатобумажных тканей и швейных изделий. </p>
+            <div class="row mt-30">
+                <div class="col-md-4 col-sm-6">
+                	<form action="mail.php" method="POST">
+                	<form>
+                    	<input type="text" name="user_name" placeholder="Ваше Имя:">
+						<input type="email" name="user_email" placeholder="Ваш Email:">
+                    	<input type="tel" name="user_phone" placeholder="Ваш номер телефона:">
+						<button class="btn btn-default btn-head mt-20 mb-50">Отправить заявку</button>
+                	</form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Для авторизованных -->
+<?php if (Auth\User::isAuthorized()): ?>
+<p class="privet">Привет, <?php echo "<span class='name'>".$arr['names']."</span>!";?></p>
+
+<!-- Для НЕ авторизованных -->
+<?php else: ?>
+<p class="privet">Привет, <span class='name'>Гость</span>!</p>
+
+<!-- Конец условия -->
+<?php endif; ?>
+
+<!-- Для авторизованных -->
+<?php if (Auth\User::isAuthorized()): ?>
+<p class="ogl">Профиль</p>
+<div class="dannye">
+<p class="bolden">Ваши данные:</p>
+<p class="nik stef">Имя: <span class='name'><?php echo $arr['names'];?></span></p>
+<p class="nik stef">E-mail: <span class='name'><?php echo $arr['username'];?></span></p>
+<p class="nik stef">IP: <span class='name'><?php echo $arr['ips'];?></span></p>
+<p class="nik stef">Регистрация: <span class='name'><?php echo $arr['vremya'];?></span></p>
+</div>
+<form novalidate="novalidate" class="form-signin-2 ajax" method="post" action="ajax.php">
+<input type="hidden" name="act" value="logout">
+<input type="submit" class="vyxod" value="Выйти" />
+</form>
+
+<!-- Конец условия -->
+<?php endif; ?>
+
+<section class="excellence mb-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <figure class="mt-50;"><img src="img/director.png" alt=""></figure>
+                    </div>
+                    <div class="col-sm-6">
+                    	<h5 style="color:#000">О КОМПАНИИ  <span style="color:#ffc000">«ТИРОТЕКС»</span></h5>
+                       <p>
+	                       «Тиротекс» - уникальная текстильная компания с 47-летней историей, работающая по полному циклу производства, начиная от обработки хлопка и заканчивая пошивом готовых изделий. Это уникальный производственный комплекс с мощной инфраструктурой, развитой технической, организационной и научной базой. В состав производственной цепочки компании входят прядильная и ткацкая фабрики, отделочное производство, полностью автоматизированное швейное производство.</p>
+	                       <p>Ориентация на передовые европейские технологии производства и натуральные материалы играет ключевую роль в маркетинговой концепции "Тиротекса".
+                       </p>
+                       <p>Постоянное внедрение инновационных технологий и современный парк оборудования от ведущих мировых производителей обеспечивает выпуск самого широкого ассортимента продукции - более 1000 артикулов тканей постельного и столового текстиля для дома, индустрии гостеприимства и учреждений медицины. Ежемесячно "Тиротекс" разрабатывает и внедряет более 250 новых текстильных дизайнов, из которых 50% разрабатываются на цифровых печатных машинах.</p>
+                       <p>
+                       	Торговая марка "Тиротекс" - это высококачественный текстиль из 100% хлопка, рассчитанный на потребителя, заботящегося о своем здоровье и здоровье своей семьи, стремящегося иметь только самое лучшее. Сочетание качества, экологичности, модных трендов текстильного дизайна и передовых технологий обработки натурального хлопка позволяет создавать настоящие произведения текстильного искусства.
+                       </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="section2" class="our-courses mt-30 mb-50">
+    <div class="container">
+        <div class="text-center mb-50 head">
+            <h2 class="mb-25">Преимущества <span>НАШЕЙ</span> Компании</h2>
+            <p>Участие в отраслевых выставках – это отличная возможность за короткий срок представить свою продукцию максимальному количеству профессиональной аудитории, заключить контракты и укрепить имидж компании.</p>
+        </div>
+        <div class="row courses top">
+            <div class="col-sm-4 course text-bold clearfix">
+                <figure class="pull-left mt-10"><i style="font-size:80px; color:#5A9BD1" class="fa fa-check-circle" aria-hidden="true"></i></figure>
+                <div class="info">
+                	<h5>Преимущество №1</h5>
+                    <p>Ежегодно компания «Тиротекс» принимает участие в крупнейшей международной выставке домашнего текстиля HEIMTEXTIL FRANKFURT в Германии (с 1995 г).</p>
+                </div>
+            </div>
+            <div class="col-sm-4 course text-bold clearfix">
+                <figure class="pull-left mt-10"><i style="font-size:80px; color:#FFC000" class="fa fa-check-circle" aria-hidden="true"></i></figure>
+                <div class="info">
+                	<h5>Преимущество №2</h5>
+                    <p>С 2013г компания ежегодно открывает свою экспозицию на выставке тканей и изделий для домашнего интерьера HEIMTEXTIL RUSSIA (Российская Федерация, г.Москва).</p>
+                </div>
+            </div>
+            <div class="col-sm-4 course text-bold clearfix">
+                <figure class="pull-left mt-10"><i style="font-size:80px; color:#EE6555" class="fa fa-check-circle" aria-hidden="true"></i></figure>
+                <div class="info">
+                	<h5>Преимущество №3</h5>
+                    <p>В 2015 году текстильная компания «Тиротекс» впервые приняла участие в китайской выставке INTERTEXTILE SHANGHAI HOME TEXTILES в г. Шанхай.</p>
+                </div>
+            </div>
+            
+		</div>
+		<div class="text-center mb-50 head">
+            <p>Несмотря на успехи, достигнутые на международной текстильной арене компания «Тиротекс» не забывает и об отечественном покупателе, постоянно принимая участие в выставках-продажах, посвященных Дню Республики, Дню города, Дню работника легкой промышленности, является активным участником ярмарок проекта «Покупай Приднестровское!».</p>
+        </div>
+    </div>
+</section>
+
+<section id="section3" class="our-courses parallax parallax_one" data-stellar-background-ratio="0.5" style="background-position: center bottom">
+    <div class="overlay"></div>
+    <div class="parallax_inner">
+        <div class="container">
+            <div class="text-center mb-50 head">
+                <h2 class="mb-25" style="color:#fff">Наши <span style="color:#ffc000">товары</span></h2>
+                <p>Великолепное качество натуральных тканей, богатое разнообразие цветовых решений украсит ваш дом и сделает вашу жизнь приятной и уютной.</p>
+            </div>
+            <div class="row courses">
+                <div class="col-md-4 col-sm-6 course text-bold clearfix">
+                    <div class="course_inner">
+                    <figure class="pull-left mt-10"><img alt="" style="height:170px; padding-left: 90px;" src="img/ford_focus_3.png"></figure>
+                    <div class="info">
+                        <h5 style="color:#fff">Постельное Белье</h5>
+                        <p>Постельное белье из высоких номеров пряжи, плотных артикулов ткани, таких как сатин, перкаль, ренфорсе, отличаются красивым, изысканным видом, мягкостью и нежностью тканей.</p>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 course text-bold clearfix">
+                    <div class="course_inner">
+                    <figure class="pull-left mt-10"><img alt="" style="height:170px; padding-left: 90px;" src="img/ford_focus_32.png"></figure>
+                    <div class="info">
+                        <h5 style="color:#fff">Ткани Готовые</h5>
+                        <p>Ткани из пневматической, гребенной, полугребенной и компактной пряжи из 100% хлопка, а также смесовые ткани из хлопка и полиэфира. </p>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 course text-bold clearfix">
+                    <div class="course_inner">
+                    <figure class="pull-left mt-10"><img alt="" style="height:170px;padding-left: 90px;" src="img/3307.png"></figure>
+                    <div class="info">
+                        <h5 style="color:#fff">Спецодежда</h5>
+                        <p>В ассортименте нашего предприятия - рабочая одежда для различных отраслей промышленности, специальная одежда для медицинского персонала, униформа и обмундирование для силовых и охранных структур.</p>
+                    </div>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="trial mt-40 mb-30 text-bold text-center">
+    <div class="container">
+        <h3>Появились вопросы? Звоните не откладывая</h3>
+        <h2 style="color:#000"><i style="color:#ffc000" class="fa fa-phone-square" aria-hidden="true"></i> <a style="color:#000" href="tel:+373(533)79259">+373(533)79259</a> </h2>
+    </div>
+</section> 
+
+
+<section id="section4" class="testimonials text-bold text-center color-white parallax parallax_two" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="parallax_inner owl-carousel" data-slides="1" data-slides-md="1" data-slides-sm="1" data-margin="0" data-loop="true" data-dots="true" data-nav="false">
+        <div class="container">
+            <figure><img alt="" src="img/testimonial.png"></figure>
+            <h5>Лариса Владимировна</h5>
+            <p>Кухонные полотенца Тиротекс уже давно привычны в нашей семье, главное достоинство их это конечно же отличное качество. А благодаря красивым и ярким картинкам они всегда радуют глаз.</p>
+        </div>
+         <div class="container">
+            <figure><img alt="" src="img/testimonial1.jpg"></figure>
+            <h5>Александр Викторович</h5>
+            <p>Спать на постельном белье этой фирмы - сплошное удовольствие! Стирается отлично, после стирок рисунок такой же свежий. Постельное белье Тиротекс имеет большой ассортимент как для взрослых, так и для детей. Размеры тоже разные. Цены приемлемые. Служит долго! Настоятельно рекомендую Вам продукцию постельного белья Тиротекс!</p>
+        </div>
+        <div class="container">
+            <figure><img alt="" src="img/testimonial.png"></figure>
+            <h5>Лидия Михайловна</h5>
+            <p>Мне посчастливилось быть лично на этой фабрике и видеть весь цикл производства текстиля своими глазами. Ткани, красители, тесьма, кружева и другое всё натуральное. После стирки не линяет, не садится. Нити не рвутся. Цена ну очень приятно удивила. Гораздо ниже, чем у других производителей.</p>
+        </div>
+    </div>
+</section>
+
+<section id="section5" class="trial mt-40 mb-30 text-bold">
+    <div class="container">
+        <h2 class="text-center" style="color:#000">Контактная информация</h2>
+        <div class="row">
+    	 	<div class="col-xs-12 col-sm-6" >
+    	 		<h6>Телефон:</h6>
+    	 		<h3 style="color:#000"><i style="color:#ffc000" class="fa fa-phone-square" aria-hidden="true"></i> <a style="color:#000" href="tel:+373(533)79259">+373(533)79259</a> </h3>
+        	</div>
+        	<div class="col-xs-12 col-sm-6" style="text-align:left">
+    	 		<h6>Email:</h6>
+    	 		<h3 style="color:#000"><i style="color:#ffc000" class="fa fa-envelope" aria-hidden="true"></i><a style="color:#000" href="mailto:email"> marketing2@tirotex.com</a></h3>
+        	</div>
+    	</div>
+    	<div class="text-center">
+    		<a class="btn btn-default" href="">Заказать звонок</a>
+    	</div>
+        
+    </div>
+</section>    
+<footer class="text-center color-white text-bold">
+    <span>© «ТИРОТЕКС», 2021 | <a href="https://utm.md/ru/">by Students with UTM</a></span>
+</footer>
+<!--===============================
+Script Source
+=================================-->
+<script src="jquery-2.0.3.min.js"></script>
+<script src="ajax-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.easing-1.3.pack.js"></script>
+<script src="js/jflickrfeed.min.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/bootstrap-scrollspy.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
